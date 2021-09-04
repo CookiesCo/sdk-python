@@ -3,6 +3,22 @@
 
 This repository defines an API client for easy access to [Cookies](https://cookies.co) APIs from Python.
 
+## Docs
+
+Guides, access docs, and other resources can be found at the [_Cookies API Console_](https://go.cookies.co/apis). Check there first if you can't find what you're after.
+
+- **API Reference**
+  - [Brands](https://py.cookies.dev/controllers/brands)
+  - [Stores](https://py.cookies.dev/controllers/stores)
+  - [Strains](https://py.cookies.dev/controllers/strains)
+
+- **Class Reference**
+  - [API Client](https://py.cookies.dev/client): Info about the main API client facade.
+  - [HTTP Request](https://py.cookies.dev/http-request): HTTP request object.
+  - [HTTP Response](https://py.cookies.dev/http-response): HTTP response object.
+  - [Utility classes](https://py.cookies.dev/utility-classes): General utilities
+
+
 ## Building
 
 You must have Python `3 >=3.6, <= 3.9` installed on your system to install and run this SDK. This SDK package depends on other Python packages like nose, jsonpickle etc. These dependencies are defined in the `requirements.txt` file that comes with the SDK.To resolve these dependencies, you can use the PIP Dependency manager. Install it by following steps at [https://pip.pypa.io/en/stable/installing/](https://pip.pypa.io/en/stable/installing/).
