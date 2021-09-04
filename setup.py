@@ -3,32 +3,32 @@
 import sys
 from setuptools import setup, find_packages
 
-if sys.version_info[0] < 3:
-    with open('README.md', 'r') as fh:
-        long_description = fh.read()
-else:
-    with open('README.md', 'r', encoding='utf-8') as fh:
-        long_description = fh.read()
+
+def readfile(file):
+    if sys.version_info[0] < 3:
+        with open(file, 'r') as fh:
+            return fh.read()
+    else:
+        with open(file, 'r', encoding='utf-8') as fh:
+            return fh.read()
+
+long_description = readfile('README.md')
+libversion = readfile('.version')
+deps = readfile('requirements.txt')
+devdeps = readfile('dev-requirements.txt')
+
 
 setup(
     name='cookiesapi',
-    version='1.0.0',
-    description='Main Cookies application API, which provides endpoints for developers working with Cookies. Fetch canonical records relating to brands, stores, and strains.',
+    version=libversion,
+    description='Python SDK for working with Cookies APIs.',
     long_description=long_description,
     long_description_content_type="text/markdown",
     author='Eng@Cookies',
     author_email='engineering@cookiescalifornia.com',
     url='https://cookies.dev',
     packages=find_packages(),
-    install_requires=[
-        'requests>=2.9.1, <3.0',
-        'jsonpickle>=0.7.1, <1.0',
-        'cachecontrol>=0.11.7, <1.0',
-        'python-dateutil>=2.5.3, <3.0',
-        'enum34>=1.1.6'
-    ],
-    tests_require=[
-        'nose>=1.3.7'
-    ],
+    install_requires=filter(lambda x: x != '', deps.split('\n')),
+    tests_require=filter(lambda x: x != '', devdeps.split('\n')),
     test_suite = 'nose.collector'
 )

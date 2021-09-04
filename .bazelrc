@@ -1,0 +1,6 @@
+
+# load bazelrc from the legacy location
+# as recommended in https://github.com/bazelbuild/bazel/issues/6319
+import %workspace%/tools/base.bazel.rc
+import %workspace%/tools/ci.bazel.rc
+import %workspace%/tools/dev.bazel.rc

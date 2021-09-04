@@ -1,5 +1,8 @@
 
-# Cookies SDK for Python  ![beta](https://img.shields.io/badge/-beta-blue) <br /> [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=CookiesCo_sdk-python&metric=alert_status)](https://sonarcloud.io/dashboard?id=CookiesCo_sdk-python) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=CookiesCo_sdk-python&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=CookiesCo_sdk-python) [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=CookiesCo_sdk-python&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=CookiesCo_sdk-python) [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=CookiesCo_sdk-python&metric=security_rating)](https://sonarcloud.io/dashboard?id=CookiesCo_sdk-python)
+# Cookies SDK for Python  ![beta](https://img.shields.io/badge/-beta-blue) <br /> [![Build status](https://badge.buildkite.com/d95aacf67662839a273fd1e9f0bb36f38662cbff92168b6d33.svg)](https://buildkite.com/cookies/python-sdk-python) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=CookiesCo_sdk-python&metric=alert_status)](https://sonarcloud.io/dashboard?id=CookiesCo_sdk-python) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=CookiesCo_sdk-python&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=CookiesCo_sdk-python) [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=CookiesCo_sdk-python&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=CookiesCo_sdk-python) [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=CookiesCo_sdk-python&metric=security_rating)](https://sonarcloud.io/dashboard?id=CookiesCo_sdk-python)
+
+- Library Version: `1.0.0` (`beta`)
+- API Version: `v1` (`stable`)
 
 This repository defines an API client for easy access to [Cookies](https://cookies.co) APIs from Python.
 
@@ -25,6 +28,9 @@ Guides, access docs, and other resources can be found at the [_Cookies API Conso
   - [HTTP Request](https://py.cookies.dev/http-request): HTTP request object.
   - [HTTP Response](https://py.cookies.dev/http-response): HTTP response object.
   - [Utility classes](https://py.cookies.dev/utility-classes): General utilities
+
+- **Devops Reports**
+  - [Coverage Report](https://py.cookies.dev/docs/reports/coverage)
 
 
 ### Initialize the API Client

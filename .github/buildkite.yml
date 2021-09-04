@@ -1,5 +1,5 @@
 steps:
-  - command: "bash ./scripts/build-test-linux.sh && ./scripts/push-artifacts.sh;"
+  - command: "cat ./scripts/build-test-linux.sh ./scripts/push-artifacts.sh | bash"
     label: ":python: :linux: Build & Test SDK"
     key: build-test-linux
     agents:
@@ -8,20 +8,21 @@ steps:
     key: build-test-mac
     label: ":python: :mac: Build & Test SDK"
     agents:
-      "gcp:project-id": "cookies-co"
-    agents:
       os_flavor: "macos"
 
   - wait
 
-  - command: "./scripts/load-artifacts.sh && bash ./scripts/report-coverage.sh;"
+  - command: "cat ./scripts/load-artifacts.sh ./scripts/report-coverage.sh | bash"
     label: ":codecov: Report Coverage"
     agents:
       "gcp:project-id": "cookies-co"
-  - command: "./scripts/load-artifacts.sh && ./scripts/report-sonar.sh;"
+
+  - command: "cat ./scripts/load-artifacts.sh bash ./scripts/report-sonar.sh | bash"
     label: ":sonarcloud: Static Analysis"
     agents:
       "gcp:project-id": "cookies-co"
+    soft_fail:
+      - exit_status: 1
 
   - block: ":toolbox: Snapshot?"
     blocked_state: passed

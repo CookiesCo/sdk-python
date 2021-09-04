@@ -1,0 +1,13 @@
+
+#
+# Bazel: CI settings
+#
+
+build:ci --build_metadata=ROLE=CI
+build:ci --remote_upload_local_results=true
+run:ci --remote_upload_local_results=true
+
+test:ci --test_output=errors
+test:ci --cache_test_results
+test:ci --test_verbose_timeout_warnings
+test:ci --remote_upload_local_results=true

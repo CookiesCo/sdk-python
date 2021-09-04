@@ -1,0 +1,16 @@
+
+#
+# Bazel: Release Settings
+#
+
+build:release --compilation_mode=opt
+build:release --copt=-Wframe-larger-than=16384
+build:release --copt=-O3
+build:release --define zlib=ng
+build:release --noremote_upload_local_results
+build:release --remote_cache=
+run:release --compilation_mode=opt
+run:release --copt=-Wframe-larger-than=16384
+run:release --copt=-O3
+run:release --define zlib=ng
+run:release --remote_cache=

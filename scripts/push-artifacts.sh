@@ -6,6 +6,7 @@ tar -czvf build/coverage-reports.tar.gz "./build/reports/jacoco/test";
 
 echo "--- :buildkite: Pushing artifacts to Buildkite...";
 buildkite-agent artifact upload "dist/*.*";
+buildkite-agent artifact upload "reports/*.*";
 
 if [ -z ${BUILDKITE_TAG+x} ];
 then ARTIFACT_BASE="$BUILDKITE_TAG";

@@ -1,0 +1,7 @@
+
+#
+# Bazel: Development settings
+#
+
+build:dev --experimental_ui_mode=oldest_actions
+build:skaffold --experimental_ui_mode=oldest_actions
