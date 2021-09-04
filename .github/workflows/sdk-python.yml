@@ -1,0 +1,48 @@
+name: "Migrate: Upstream"
+
+on:
+  push:
+    branches:
+      - main
+      - release/*
+      - dev
+
+jobs:
+  migrate-upstream:
+    runs-on: ubuntu-latest
+    name: "Migrate: Upstream"
+    steps:
+      # 1: Pull code.
+      - uses: actions/checkout@v2
+
+      # 2: Validate migration via Copybara.
+      - name: Validate Migration
+        uses: CookiesCo/copybara-action@6f80ab115fab20b00d6019229675e22fccef3115
+        with:
+          git_name: Cookiebot
+          git_email: techteam+github@cookiescalifornia.com
+          git_credentials: ${{ secrets.BOT_API_CREDS }}
+          ssh_key: ${{ secrets.BOT_SSH_KEY }}
+          ssh_known_hosts: ${{ secrets.BOT_KNOWN_HOSTS }}
+          gpg_key: ${{ secrets.BOT_GPG_KEY }}
+          gpg_key_id: ${{ secrets.BOT_GPG_KEY_ID }}
+          workflow: upstream
+          command: validate
+          image: us.gcr.io/elide-ai/tools/copybara:latest
+
+      # 3: Publish to upstream as a PR.
+      - name: Migration
+        uses: CookiesCo/copybara-action@6f80ab115fab20b00d6019229675e22fccef3115
+        with:
+          git_name: Cookiebot
+          git_email: techteam+github@cookiescalifornia.com
+          git_credentials: ${{ secrets.BOT_API_CREDS }}
+          ssh_key: ${{ secrets.BOT_SSH_KEY }}
+          ssh_known_hosts: ${{ secrets.BOT_KNOWN_HOSTS }}
+          gpg_key: ${{ secrets.BOT_GPG_KEY }}
+          gpg_key_id: ${{ secrets.BOT_GPG_KEY_ID }}
+          workflow: upstream
+          command: migrate
+          ref: "${{ github.ref }}"
+          image: us.gcr.io/elide-ai/tools/copybara:latest
+          options: "--force"

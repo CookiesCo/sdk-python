@@ -1,0 +1,53 @@
+steps:
+  - command: "bash ./scripts/build-test-linux.sh && ./scripts/push-artifacts.sh;"
+    label: ":python: :linux: Build & Test SDK"
+    key: build-test-linux
+    agents:
+      "gcp:project-id": "cookies-co"
+  - command: "bash ./scripts/build-test-macos.sh"
+    key: build-test-mac
+    label: ":python: :mac: Build & Test SDK"
+    agents:
+      "gcp:project-id": "cookies-co"
+    agents:
+      os_flavor: "macos"
+
+  - wait
+
+  - command: "./scripts/load-artifacts.sh && bash ./scripts/report-coverage.sh;"
+    label: ":codecov: Report Coverage"
+    agents:
+      "gcp:project-id": "cookies-co"
+  - command: "./scripts/load-artifacts.sh && ./scripts/report-sonar.sh;"
+    label: ":sonarcloud: Static Analysis"
+    agents:
+      "gcp:project-id": "cookies-co"
+
+  - block: ":toolbox: Snapshot?"
+    blocked_state: passed
+
+  - command: "cat scripts/load-artifacts.sh scripts/publish-gcloud.sh | bash;"
+    label: ":gcloud: Deploy: Artifact Registry (Snapshot)"
+    agents:
+      "gcp:project-id": "cookies-co"
+
+  - command: "cat scripts/load-artifacts.sh scripts/publish-github.sh | bash;"
+    label: ":github: Deploy: GitHub Package (Snapshot)"
+    agents:
+      "gcp:project-id": "cookies-co"
+
+  - block: ":shipit: Stage?"
+    blocked_state: passed
+
+  - command: "bash scripts/stage.sh"
+    label: ":python: Deploy: PyPI (Stage)"
+    agents:
+      "gcp:project-id": "cookies-co"
+
+  - block: ":rocket: Release?"
+    blocked_state: passed
+
+  - command: "bash scripts/release.sh"
+    label: ":python: Deploy: PyPI (Release)"
+    agents:
+      "gcp:project-id": "cookies-co"
