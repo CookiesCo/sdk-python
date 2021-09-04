@@ -45,7 +45,6 @@ class RequestsClient(HttpClient):
 
         retries = Retry(total=max_retries, backoff_factor=backoff_factor,
                         status_forcelist=retry_statuses, allowed_methods=retry_methods)
-        self.session.mount('http://', HTTPAdapter(max_retries=retries))
         self.session.mount('https://', HTTPAdapter(max_retries=retries))
 
         if cache:
