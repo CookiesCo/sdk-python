@@ -1,3 +1,6 @@
+
+from . import cookiesapi_client
+
 __all__ = [
     'api_helper',
     'configuration',
@@ -8,3 +11,7 @@ __all__ = [
     'http',
     'models',
 ]
+
+
+## Entrypoint
+CookiesSDK = cookiesapi_client.CookiesapiClient

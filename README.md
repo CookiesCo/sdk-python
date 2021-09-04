@@ -3,6 +3,14 @@
 
 This repository defines an API client for easy access to [Cookies](https://cookies.co) APIs from Python.
 
+## Installation
+
+From your favorite command line:
+
+```
+  pip install cookiesapi
+```
+
 ## Docs
 
 Guides, access docs, and other resources can be found at the [_Cookies API Console_](https://go.cookies.co/apis). Check there first if you can't find what you're after.
@@ -19,7 +27,69 @@ Guides, access docs, and other resources can be found at the [_Cookies API Conso
   - [Utility classes](https://py.cookies.dev/utility-classes): General utilities
 
 
-## Building
+### Initialize the API Client
+
+**_Note:_** Documentation for the client can be found [here.](/doc/client.md)
+
+The following parameters are configurable for the API Client:
+
+| Parameter | Type | Description |
+|  --- | --- | --- |
+| `apikey` | `string` | Consumer API key issued by Cookies. |
+| `environment` | Environment | The API environment. <br> **Default: `Environment.SANDBOX`** |
+| `timeout` | `float` | The value to use for connection timeout. <br> **Default: 60** |
+| `max_retries` | `int` | The number of times to retry an endpoint call if it fails. <br> **Default: 0** |
+| `backoff_factor` | `float` | A backoff factor to apply between attempts after the second try. <br> **Default: 2** |
+| `retry_statuses` | `Array of int` | The http statuses on which retry is to be done. <br> **Default: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524]** |
+| `retry_methods` | `Array of string` | The http methods on which retry is to be done. <br> **Default: ['GET', 'PUT']** |
+
+The API client can be initialized as follows:
+
+```python
+from cookiesapi import CookiesSDK
+from cookiesapi.configuration import Environment
+
+client = CookiesSDK(
+    apikey='apikey',
+    environment=Environment.SANDBOX
+)
+```
+
+The API key is also settable via the _environment variable_ `COOKIES_APIKEY`. If both are made available to the SDK at runtime, the constructor parameter wins.
+
+
+### Obtaining Credentials
+
+Authorization for most Cookies APIs occurs via regular consumer API keys, which authorize the bearer to perform a broad set of operations (i.e. keys are usually API- or consumer-wide). To acquire authorized API credentials, visit the [API Console](https://go.cookies.co/dev).
+
+Sensitive APIs are gated by allowlists and may require additional security measures such as Mutual TLS (_mTLS_), OAuth 2, or asymmetric cryptographic signatures.
+
+
+### Environments
+
+The SDK can be configured to use a different environment for making API calls. Available environments are:
+
+#### Fields
+
+| Name | Description |
+|  --- | --- |
+| production | Production data and hosting environment. |
+| sandbox | **Default** Testing and development environment. |
+
+Please switch to `production` only for production traffic. Otherwise, the two environments are identical, because they pull from a mirrored (albeit isolated) data source.
+
+
+## Resources
+
+Resources available for the Python SDK include [guides](https://go.cookies.co/apis), [reference docs](https://py.cookies.dev), and the [API Console](https://go.cookies.co/apis) which sports a full testing harness.
+
+Cookies also supports API access from [Java](https://github.com/CookiesCo/java) or via [plain HTTP](https://go.cookies.co/apis).
+
+
+## Contributing
+
+
+## Building the SDK
 
 You must have Python `3 >=3.6, <= 3.9` installed on your system to install and run this SDK. This SDK package depends on other Python packages like nose, jsonpickle etc. These dependencies are defined in the `requirements.txt` file that comes with the SDK.To resolve these dependencies, you can use the PIP Dependency manager. Install it by following steps at [https://pip.pypa.io/en/stable/installing/](https://pip.pypa.io/en/stable/installing/).
 
@@ -30,11 +100,12 @@ Python and PIP executables should be defined in your PATH. Open command prompt a
 
 ![Building SDK - Step 1](https://apidocs.io/illustration/python?workspaceFolder=Cookiesapi-Python&step=installDependencies)
 
-## Installation
+
+### Development
 
 The following section explains how to use the cookiesapi library in a new project.
 
-### 1. Open Project in an IDE
+#### 1. Open Project in an IDE
 
 Open up a Python IDE like PyCharm. The basic workflow presented here is also applicable if you prefer using a different editor or IDE.
 
@@ -48,7 +119,7 @@ The project files will be displayed in the side bar as follows:
 
 ![Open project in PyCharm - Step 3](https://apidocs.io/illustration/python?workspaceFolder=Cookiesapi-Python&projectName=cookiesapi&step=openProject1)
 
-### 2. Add a new Test Project
+#### 2. Add a new Test Project
 
 Create a new directory by right clicking on the solution name as shown below:
 
@@ -76,13 +147,13 @@ from cookiesapi.cookiesapi_client import CookiesapiClient
 
 After this you can write code to instantiate an API client object, get a controller object and  make API calls. Sample code is given in the subsequent sections.
 
-### 3. Run the Test Project
+#### 3. Run the Test Project
 
 To run the file within your test project, right click on your Python file inside your Test project and click on `Run`
 
 ![Run Test Project - Step 1](https://apidocs.io/illustration/python?workspaceFolder=Cookiesapi-Python&projectName=cookiesapi&libraryName=cookiesapi.cookiesapi_client&className=CookiesapiClient&step=runProject)
 
-## Test the SDK
+### Test the SDK
 
 You can test the generated SDK and the server with test cases. `unittest` is used as the testing framework and `nose` is used as the test runner. You can run the tests as follows:
 
@@ -93,59 +164,9 @@ pip install -r test-requirements.txt
 nosetests
 ```
 
-## Initialize the API Client
 
-**_Note:_** Documentation for the client can be found [here.](/doc/client.md)
+---
 
-The following parameters are configurable for the API Client:
+🍪 Copyright © Cookies Creative Consulting & Promotions, Inc.
 
-| Parameter | Type | Description |
-|  --- | --- | --- |
-| `x_apikey` | `string` | Consumer API key issued by Cookies. |
-| `apikey` | `string` | Consumer API key issued by Cookies. |
-| `environment` | Environment | The API environment. <br> **Default: `Environment.SANDBOX`** |
-| `timeout` | `float` | The value to use for connection timeout. <br> **Default: 60** |
-| `max_retries` | `int` | The number of times to retry an endpoint call if it fails. <br> **Default: 0** |
-| `backoff_factor` | `float` | A backoff factor to apply between attempts after the second try. <br> **Default: 2** |
-| `retry_statuses` | `Array of int` | The http statuses on which retry is to be done. <br> **Default: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524]** |
-| `retry_methods` | `Array of string` | The http methods on which retry is to be done. <br> **Default: ['GET', 'PUT']** |
-
-The API client can be initialized as follows:
-
-```python
-from cookiesapi.cookiesapi_client import CookiesapiClient
-from cookiesapi.configuration import Environment
-
-client = CookiesapiClient(
-    x_apikey='x-apikey',
-    apikey='apikey',
-    environment=Environment.SANDBOX,)
-```
-
-## Environments
-
-The SDK can be configured to use a different environment for making API calls. Available environments are:
-
-### Fields
-
-| Name | Description |
-|  --- | --- |
-| production | Production data and hosting environment. |
-| sandbox | **Default** Testing and development environment. |
-
-## Authorization
-
-This API uses `Custom Query Parameter`.
-
-## List of APIs
-
-* [Stores](/doc/controllers/stores.md)
-* [Strains](/doc/controllers/strains.md)
-* [Brands](/doc/controllers/brands.md)
-
-## Classes Documentation
-
-* [Utility Classes](/doc/utility-classes.md)
-* [HttpResponse](/doc/http-response.md)
-* [HttpRequest](/doc/http-request.md)
-
+This repository contains private computer source code owned by Cookies (heretofore Cookies Creative Consulting & Promotions, a California Company). Use of this code in source or object form requires prior written permission from a duly-authorized member of Cookies Engineering. All rights reserved.

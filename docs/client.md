@@ -21,9 +21,9 @@ from cookiesapi.cookiesapi_client import CookiesapiClient
 from cookiesapi.configuration import Environment
 
 client = CookiesapiClient(
-    x_apikey='x-apikey',
     apikey='apikey',
-    environment=Environment.SANDBOX,)
+    environment=Environment.SANDBOX
+)
 ```
 
 ## Cookies API Client
@@ -37,4 +37,3 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | stores | Gets StoresController |
 | strains | Gets StrainsController |
 | brands | Gets BrandsController |
-

@@ -57,10 +57,6 @@ class Configuration(object):
         return self._environment
 
     @property
-    def x_apikey(self):
-        return self._x_apikey
-
-    @property
     def apikey(self):
         return self._apikey
 
@@ -68,7 +64,7 @@ class Configuration(object):
         self, timeout=60, max_retries=0, backoff_factor=2,
         retry_statuses=[408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
         retry_methods=['GET', 'PUT'], environment=Environment.SANDBOX,
-        x_apikey='', apikey=''
+        apikey=''
     ):
         # The value to use for connection timeout
         self._timeout = timeout
@@ -91,9 +87,6 @@ class Configuration(object):
         self._environment = environment
 
         # Consumer API key issued by Cookies.
-        self._x_apikey = x_apikey
-
-        # Consumer API key issued by Cookies.
         self._apikey = apikey
 
         # The Http Client to use for making requests.
@@ -101,21 +94,20 @@ class Configuration(object):
 
     def clone_with(self, timeout=None, max_retries=None, backoff_factor=None,
                    retry_statuses=None, retry_methods=None, environment=None,
-                   x_apikey=None, apikey=None):
+                   apikey=None):
         timeout = timeout or self.timeout
         max_retries = max_retries or self.max_retries
         backoff_factor = backoff_factor or self.backoff_factor
         retry_statuses = retry_statuses or self.retry_statuses
         retry_methods = retry_methods or self.retry_methods
         environment = environment or self.environment
-        x_apikey = x_apikey or self.x_apikey
         apikey = apikey or self.apikey
 
         return Configuration(timeout=timeout, max_retries=max_retries,
                              backoff_factor=backoff_factor,
                              retry_statuses=retry_statuses,
                              retry_methods=retry_methods,
-                             environment=environment, x_apikey=x_apikey,
+                             environment=environment,
                              apikey=apikey)
 
     def create_http_client(self):
