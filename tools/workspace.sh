@@ -15,5 +15,4 @@ STABLE_BUILD_GIT_COMMIT ${git_commit}
 STABLE_DOCKER_TAG ${stable_docker_tag}
 DOCKER_TAG ${docker_tag}
 VERSION $1
-BASE $2
 EOF

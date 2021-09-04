@@ -12,6 +12,8 @@ __all__ = [
     'models',
 ]
 
+__version__ = (1, 0, 2)
+
 
 ## Entrypoint
 CookiesSDK = cookiesapi_client.CookiesapiClient

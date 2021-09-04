@@ -10,6 +10,7 @@ MAKEFLAGS += --no-print-directory
 VERSION = $(shell cat ./.version)
 
 SDK ?= //:sdk
+CLI ?= //:cli
 IMAGE ?= //:image
 TESTS ?= //tests/...
 TARGETS ?= $(SDK) $(IMAGE)
@@ -65,7 +66,7 @@ status: show-features show-versions show-image  ## Display status of the local d
 ifeq ($(QUIET),no)
 	$(info -- Current status:)
 endif
-	$(RULE)$(BASH) tools/workspace.sh $(VERSION) $(BASE);
+	$(RULE)$(BASH) tools/workspace.sh $(VERSION);
 
 
 ifeq ($(PUSH),yes)
@@ -78,28 +79,28 @@ endif
 	buildkite-agent meta-data set "image-version" "$(IMAGE_VERSION)"
 	buildkite-agent meta-data set "image-target" "$(DOCKER_REGISTRY)/$(DOCKER_REPOSITORY):$(IMAGE_VERSION)"
 
-build:  ## Build the Python SDK via Bazel.
+build: $(ENV)  ## Build the Python SDK via Bazel.
 	$(info Building app...)
 ifeq ($(ENABLE_BAZEL),yes)
 	$(RULE)$(BAZELISK) $(BAZELISK_ARGS) build $(BAZEL_ARGS) $(TARGETS)
 else
-	$(RULE)$(BASH) scripts/tests.sh
+	$(RULE)$(PYTHON) -m build
 endif
 
-image:   ## Build the SDK Docker image via Bazel.
+image: $(ENV)   ## Build the SDK Docker image via Bazel.
 	$(info Building application image...)
 	$(RULE)$(BAZELISK) $(BAZELISK_ARGS) build $(BAZEL_ARGS) $(IMAGE)
 
-push:  ## Build and push the latest app image.
+push: $(ENV)  ## Build and push the latest app image.
 	$(info Pushing application image...)
 	$(RULE)$(BAZELISK) $(BAZELISK_ARGS) run $(BAZEL_ARGS) $(IMAGE).push
 
-test:  ## Run the testsuite for the sample application via Bazel.
+test: $(ENV)  ## Run the testsuite for the sample application via Bazel.
 	$(info Running tests...)
 ifeq ($(ENABLE_BAZEL),yes)
 	$(RULE)$(BAZELISK) $(BAZELISK_ARGS) $(TEST_CMD) $(BAZEL_ARGS) $(TESTS)
 else
-	$(RULE)$(BASH) scripts/tests.sh
+	$(RULE)$(BASH) scripts/test.sh
 endif
 
 lintfix:  ## Run the `buildifier` lintfixer.
@@ -108,7 +109,7 @@ lintfix:  ## Run the `buildifier` lintfixer.
 
 run:  ## Build and run the sample application via Bazel.
 	$(info Building app...)
-	$(RULE)$(BAZELISK) $(BAZELISK_ARGS) run $(BAZEL_ARGS) $(APP)
+	$(RULE)$(BAZELISK) $(BAZELISK_ARGS) run $(BAZEL_ARGS) $(CLI) -- $(ARGS)
 
 sources: $(ENV)  ## Re-render templated sources, like the README.
 	$(info Re-rendering sources...)

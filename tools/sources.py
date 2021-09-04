@@ -22,7 +22,7 @@ def read_file_version(file):
         Version string from the file."""
 
     with open(file, "r") as handle:
-        return handle.read()
+        return handle.read().split("\n")[0]
 
 def capture_output(command):
     """Run the provided command as a shell command, and capture the output, and return it.

@@ -57,7 +57,7 @@ JAVA ?= $(shell which java)
 endif
 
 ifeq ($(ENABLE_PYTHON),yes)
-PYTHON ?= $(ENV)/bin/python
+PYTHON ?= $(ENV)/python/bin/python3
 VIRTUALENV ?= $(shell which virtualenv)
 
 ifeq ($(ENABLE_GCLOUD),yes)

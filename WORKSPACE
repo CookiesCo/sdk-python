@@ -56,7 +56,7 @@ go_register_toolchains(version = GO_VERSION)
 
 gazelle_dependencies()
 
-load("@io_bazel_rules_docker//python:image.bzl", py_image_repos = "repositories")
+load("@io_bazel_rules_docker//python3:image.bzl", py_image_repos = "repositories")
 load("@io_bazel_rules_docker//repositories:deps.bzl", container_deps = "deps")
 
 ## Docker

@@ -1,7 +1,7 @@
 
 # Cookies SDK for Python  ![beta](https://img.shields.io/badge/-beta-blue) <br /> [![Build status](https://badge.buildkite.com/d95aacf67662839a273fd1e9f0bb36f38662cbff92168b6d33.svg)](https://buildkite.com/cookies/python-sdk-python) [![codecov](https://codecov.io/gh/CookiesCo/sdk-python/branch/main/graph/badge.svg?token=sWIoyB4Ymc)](https://codecov.io/gh/CookiesCo/sdk-python) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=CookiesCo_sdk-python&metric=alert_status)](https://sonarcloud.io/dashboard?id=CookiesCo_sdk-python) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=CookiesCo_sdk-python&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=CookiesCo_sdk-python) [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=CookiesCo_sdk-python&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=CookiesCo_sdk-python) [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=CookiesCo_sdk-python&metric=security_rating)](https://sonarcloud.io/dashboard?id=CookiesCo_sdk-python)
 
-- Library Version: `1.0.1` (`beta`)
+- Library Version: `1.0.2` (`beta`)
 - API Version: `v1` (`stable`)
 
 This repository defines an API client for easy access to [Cookies](https://cookies.co) APIs from Python.
@@ -31,6 +31,29 @@ Guides, access docs, and other resources can be found at the [_Cookies API Conso
 
 - **Devops Reports**
   - [Coverage Report](https://py.cookies.dev/docs/reports/coverage)
+
+
+## Using the Docker image
+
+Docker images are made available where you can interactively play with the SDK:
+
+- GitHub: `gchr.io/cookiesco/sdk-python`
+- Google: `us-docker.pkg.dev/cookies-eng/public/sdk/python`
+
+The image is set up with an entrypoint which drops you into an interactive session:
+
+```
+➜  docker run --rm -it ghcr.io/cookiesco/sdk-python
+
+Cookies Python SDK Tool (v1.0.2)
+-----------------------------
+This tool helps start up local proxy services which help Cookies Engineering team members while they're working on
+stuff that requires secure API access. To use the tool, simply invoke from Docker.
+
+>>> import cookiesapi
+>>> print(".".join(cookiesapi.__version__))
+1.0.2
+```
 
 
 ### Initialize the API Client

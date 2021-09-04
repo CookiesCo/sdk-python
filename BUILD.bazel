@@ -1,0 +1,59 @@
+load("@rules_python//python:defs.bzl", "py_library", "py_binary")
+load("@io_bazel_rules_docker//python3:image.bzl", py_image="py3_image")
+load("@io_bazel_rules_docker//container:push.bzl", "container_push")
+load("@pip//:requirements.bzl", pip="requirement")
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+
+py_library(
+    name = "lib",
+    srcs = glob([
+        "cookiesapi/*.py",
+        "cookiesapi/**/*.py",
+    ]),
+    deps = [
+        pip("cachecontrol"),
+        pip("click"),
+        pip("jsonpickle"),
+        pip("opencannabis"),
+        pip("python-dateutil"),
+        pip("requests"),
+    ],
+)
+
+py_binary(
+    name = "bin",
+    main = "tool.py",
+    srcs = ["tool.py"],
+    deps = [":lib"],
+)
+
+py_image(
+    name = "image",
+    srcs = ["tool.py"],
+    deps = [":lib"],
+    main = "tool.py",
+)
+
+container_push(
+   name = "image.push",
+   image = ":image",
+   format = "OCI",
+   registry = "us.gcr.io",
+   repository = "cookies-eng/sdk/python",
+   tag = "latest",
+)
+
+
+alias(
+    name = "sdk",
+    actual = "lib",
+)
+
+alias(
+    name = "cli",
+    actual = "bin",
+)

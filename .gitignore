@@ -5,3 +5,6 @@ cookiesapi.egg-info/
 dist/
 .env/reports/
 reports/
+.dev/
+bazel-out
+dist/
