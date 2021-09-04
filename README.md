@@ -1,9 +1,7 @@
 
-# Getting Started with Cookies API
+# Cookies SDK for Python  ![beta](https://img.shields.io/badge/-beta-blue)
 
-## Introduction
-
-Main Cookies application API, which provides endpoints for developers working with Cookies. Fetch canonical records relating to brands, stores, and strains.
+This repository defines an API client for easy access to [Cookies](https://cookies.co) APIs from Python.
 
 ## Building
 
