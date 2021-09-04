@@ -1,1 +1,5 @@
 *.pyc
+build/
+.DS_Store
+cookiesapi.egg-info/
+dist/
