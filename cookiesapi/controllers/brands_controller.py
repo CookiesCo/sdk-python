@@ -21,7 +21,7 @@ class BrandsController(BaseController):
         super(BrandsController, self).__init__(config, call_back)
 
     def list_brands(self):
-        """Does a GET request to /app/v1/cookies.App/Brands.
+        """Does a GET request to /app/v1/brands.
 
         Retrieve a list of Cookies family brands.
 
@@ -37,7 +37,7 @@ class BrandsController(BaseController):
         """
 
         # Prepare query URL
-        _url_path = '/app/v1/cookies.App/Brands'
+        _url_path = '/app/v1/brands'
         _query_builder = self.config.get_base_uri(Server.DEFAULT)
         _query_builder += _url_path
         _query_url = APIHelper.clean_url(_query_builder)

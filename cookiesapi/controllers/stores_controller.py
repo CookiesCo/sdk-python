@@ -22,7 +22,7 @@ class StoresController(BaseController):
 
     def list_stores(self,
                     brand=None):
-        """Does a GET request to /app/v1/cookies.App/Stores.
+        """Does a GET request to /app/v1/stores.
 
         Retrieve a list of Cookies stores, optionally filtered by 1st-party
         brand.
@@ -42,7 +42,7 @@ class StoresController(BaseController):
         """
 
         # Prepare query URL
-        _url_path = '/app/v1/cookies.App/Stores'
+        _url_path = '/app/v1/stores'
         _query_builder = self.config.get_base_uri(Server.DEFAULT)
         _query_builder += _url_path
         _query_parameters = {

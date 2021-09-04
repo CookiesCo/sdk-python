@@ -22,7 +22,7 @@ class StrainsController(BaseController):
 
     def list_strains(self,
                      brand=None):
-        """Does a GET request to /app/v1/cookies.App/Strains.
+        """Does a GET request to /app/v1/strains.
 
         Retrieve a list of Cookies signature strains.
 
@@ -41,7 +41,7 @@ class StrainsController(BaseController):
         """
 
         # Prepare query URL
-        _url_path = '/app/v1/cookies.App/Strains'
+        _url_path = '/app/v1/strains'
         _query_builder = self.config.get_base_uri(Server.DEFAULT)
         _query_builder += _url_path
         _query_parameters = {
