@@ -11,7 +11,7 @@ else:
         long_description = fh.read()
 
 setup(
-    name='appapi',
+    name='cookiesapi',
     version='1.0.0',
     description='Main Cookies application API, which provides endpoints for developers working with Cookies. Fetch canonical records relating to brands, stores, and strains.',
     long_description=long_description,

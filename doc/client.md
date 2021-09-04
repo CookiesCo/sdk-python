@@ -17,16 +17,16 @@ The following parameters are configurable for the API Client:
 The API client can be initialized as follows:
 
 ```python
-from appapi.appapi_client import AppapiClient
-from appapi.configuration import Environment
+from cookiesapi.cookiesapi_client import CookiesapiClient
+from cookiesapi.configuration import Environment
 
-client = AppapiClient(
+client = CookiesapiClient(
     x_apikey='x-apikey',
     apikey='apikey',
     environment=Environment.SANDBOX,)
 ```
 
-## App API Client
+## Cookies API Client
 
 The gateway for the SDK. This class acts as a factory for the Controllers and also holds the configuration of the SDK.
 
