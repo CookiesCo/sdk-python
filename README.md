@@ -1,5 +1,5 @@
 
-# Cookies SDK for Python  ![beta](https://img.shields.io/badge/-beta-blue)
+# Cookies SDK for Python  ![beta](https://img.shields.io/badge/-beta-blue) <br /> [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=CookiesCo_sdk-python&metric=alert_status)](https://sonarcloud.io/dashboard?id=CookiesCo_sdk-python) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=CookiesCo_sdk-python&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=CookiesCo_sdk-python) [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=CookiesCo_sdk-python&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=CookiesCo_sdk-python) [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=CookiesCo_sdk-python&metric=security_rating)](https://sonarcloud.io/dashboard?id=CookiesCo_sdk-python)
 
 This repository defines an API client for easy access to [Cookies](https://cookies.co) APIs from Python.
 
